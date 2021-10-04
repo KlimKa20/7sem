@@ -1,5 +1,5 @@
 from STB import STB
-from lab1_sem7.config import *
+from config import *
 
 
 def read_from_file(fname):
