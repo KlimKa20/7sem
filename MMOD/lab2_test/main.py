@@ -4,7 +4,7 @@ import Statistics
 import numpy as np
 
 if __name__ == '__main__':
-    time = 10000
+    time = 3000
     X = 3
     Y = 6
     R = 1.5

@@ -13,7 +13,6 @@ class Model:
         self.__request = simpy.Resource(env, n)
 
         self.__stat = []
-        self.__stat_free = []
 
         self.__queue_list = []
         self.__queue_time = []
@@ -39,12 +38,8 @@ class Model:
             self.__count += 1
             queque = len(self.__request.queue)
             active_channel = self.__request.count
-            if active_channel == 1:
-                self.__stat_free.append(0)
-            else:
-                self.__stat_free.append(1)
+            self.__stat.append(queque + active_channel - 1)
             if queque <= self.__m:
-                self.__stat.append(1)
                 print("Заявка {0} поступила в обработку в {1}".format(self.__count, self.__env.now))
                 t1 = self.__env.timeout(np.random.exponential(1 / self.__v), value='reject')
                 time_in = self.__env.now
@@ -60,8 +55,7 @@ class Model:
             else:
                 self.__queue_time.append(0)
                 self.__total_time.append(0)
-                self.__stat.append(2)
                 print("Заявка {0} отклонена(Размер очереди превышен) в {1}".format(self.__count, self.__env.now))
 
     def get_data_for_statistic(self):
-        return self.__stat, self.__stat_free, self.__queue_list, self.__total_request, self.__queue_time, self.__total_time
+        return self.__stat, self.__queue_list, self.__total_request, self.__queue_time, self.__total_time

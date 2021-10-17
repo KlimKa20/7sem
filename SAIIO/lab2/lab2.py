@@ -2,7 +2,6 @@ import math
 
 import numpy as np
 from simplex_method import SimplexMethod
-from copy import copy
 
 
 class ILP:

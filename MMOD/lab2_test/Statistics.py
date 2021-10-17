@@ -1,4 +1,5 @@
 import matplotlib.pyplot as plt
+from scipy.stats import chisquare
 
 
 class Statistics:
@@ -53,3 +54,7 @@ class Statistics:
         print('\nАбсолютная пропускная способность(Теоретическая): {}'.format(absolute_bandwidth_t))
         absolute_bandwidth_e = relative_bandwidth_e * self.__X
         print('Абсолютная пропускная способность(Эмпирическая): {}'.format(absolute_bandwidth_e))
+
+        E_ver = [e_prob[0], e_prob[1], e_prob[2]]
+        P_ver = [t_prob[0], t_prob[1], t_prob[2]]
+        print(chisquare(E_ver, P_ver))

@@ -192,7 +192,7 @@ def correlationDiscrete(X, Y, probability_matrix, m_x, m_y, D_x, D_y):
 
 if __name__ == "__main__":
 
-    N, M = 2, 3
+    N, M = 8, 8
 
     X = new_variable(N, 10)
     print('X = ', X)
@@ -217,6 +217,7 @@ if __name__ == "__main__":
 
     print('theoretical_matrix:\n{}\n'.format(XY))
 
+    # cформируем распределение по Х
     delta_x = get_delta(XY)
     print("delta_x:\n{0}\n".format(delta_x))
 
@@ -226,7 +227,7 @@ if __name__ == "__main__":
     print('построим ф. распределения ДСВ для переменной Х\n')
     F = F(delta_x)
     print('F:\n{}\n'.format(F))
-
+    # Условный закон распределения дискретной СВ Y при X
     F_x = F_x(XY, delta_x)
     print('F_x:\n{}\n'.format(F_x))
 
@@ -280,3 +281,23 @@ if __name__ == "__main__":
     e_correlation_coefficient = correlationDiscrete(X, Y, empirical_probability, e_expectation[0], e_expectation[1],
                                                     e_variance[0], e_variance[1])
     print('empirical_correlation_coefficient:\n{0}\n'.format(e_correlation_coefficient))
+
+    if interval_estimations_expectation[0][0] < e_expectation[0] < interval_estimations_expectation[0][1]:
+        print('точечная вероятность мат ожидания X попала в интервальный промежуток с вероятностьбю 0.99')
+    else:
+        print('точечная вероятность мат ожидания X не попала в интервальный промежуток с вероятностьбю 0.99')
+
+    if interval_estimations_variance[0][0] < e_variance[0] < interval_estimations_variance[0][1]:
+        print('точечная вероятность дисперсии X попала в интервальный промежуток с вероятностьбю 0.99')
+    else:
+        print('точечная вероятность дисперсии X не попала в интервальный промежуток с вероятностьбю 0.99')
+
+    if interval_estimations_expectation[1][0] < e_expectation[1] < interval_estimations_expectation[1][1]:
+        print('точечная вероятность мат ожидания Y попала в интервальный промежуток с вероятностьбю 0.99')
+    else:
+        print('точечная вероятность мат ожидания Y не попала в интервальный промежуток с вероятностьбю 0.99')
+
+    if interval_estimations_variance[1][0] < e_variance[1] < interval_estimations_variance[1][1]:
+        print('точечная вероятность дисперсии Y попала в интервальный промежуток с вероятностьбю 0.99')
+    else:
+        print('точечная вероятность дисперсии Y не попала в интервальный промежуток с вероятностьбю 0.99')

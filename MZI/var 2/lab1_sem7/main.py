@@ -11,8 +11,8 @@ def read_from_file(fname):
 
 if __name__ == '__main__':
     data = read_from_file('input.txt')
-    KEY = '1234567'
-    KEY2 = 'KILLAL'
+    KEY = '12343'
+    KEY2 = 'TEST'
     print(COLOR.FAIL + 'DOUBLE DES' + COLOR.ENDC)
     double_des = DoubleDes(KEY, KEY2)
     double_des.encrypt_and_decrypt(data, True)
